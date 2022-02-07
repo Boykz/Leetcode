@@ -36,3 +36,47 @@ public class Solution {
         return k;
     }
 }
+
+********************************************************
+#Solution with Reserving array
+
+public class Solution {
+    public void Rotate(int[] nums, int k) {
+        int len = nums.Length,b=0;
+        k = CutK(len,k);
+        if(k != len){
+           
+            k = CutK(len,k);
+           
+           
+
+            for(int i = 0; i< len/2;i++){
+                int t = nums[i];
+                nums[i] = nums[len-i-1];
+                nums[len-i-1] = t;
+            }
+            for(int i = 0; i< k/2;i++){
+                int t = nums[i];
+                nums[i] = nums[k-i-1];
+                nums[k-i-1] = t;
+            }
+
+             int j = 0;
+             for(int i = k; i< (len-k)/2+k;i++){
+                int t = nums[i];
+                nums[i] = nums[len-j-1];
+                nums[len-j-1] = t;
+                j++;
+             }  
+         }
+    }
+    
+     public static int CutK(int length, int k){
+        if(k > length){
+           return CutK(length,k-length);
+        }
+        return k;
+    }
+}
+
+
